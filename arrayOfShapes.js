@@ -1,3 +1,5 @@
+// var makeShape = require('./shapes');
+
 var shapes = ["circle", "ellipses", "stadium", "arch", "annulus", "equilateral", "parallelogram", "pentagon", "octagon"];
 var colors = ["red", "blue", "yellow", "orange", "green", "purple", "green"];
 var sides = [1, 3, 5, 7, 9, 11];
@@ -14,18 +16,28 @@ function makeSillyShapes(){
     // for the constructor
 
     //Dont forget to push your newly made shape into your sillyShapes array.
-  }
 
-  return sillyShapes
+    var randShape = shapes[Math.floor(Math.random() * shapes.length)];
+    var randSides = sides[Math.floor(Math.random() * sides.length)];
+    var randColor = colors[Math.floor(Math.random() * colors.length)];
+
+    var newShape = new MakeShape(randShape, randSides, randColor);
+    sillyShapes.push(newShape);
+  }
+  return sillyShapes;
 }
 
-makeSillyShapes()
+makeSillyShapes();
 
 
 
 function renderShapesToHTML() {
   // You will need to loop through the sillyShapes array
   // and append the HTML to the UL.
+  var s = sillyShapes;
+  for (var i = 0; i < s.length; i++) {
+    $("#silly-shapes-list").append("<li>I am a " + s[i].color + " " + s[i].name + " with " + s[i].sides + " sides!</li>");
+  }
 }
 
 renderShapesToHTML();
